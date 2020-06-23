@@ -15,8 +15,7 @@ function SearchPage(props) {
     if(props.moviesData.data === undefined){
        
         return (
-            <div className="container">
-            </div>
+            <div className="container"></div>
 
         )
     }else{

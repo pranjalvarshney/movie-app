@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import SearchPage from './SearchPage'
-import fetchAPIData from './api'
+import SearchPage from './components/SearchPage'
+import {searchAPI, trendingAPI} from './api'
 import Search from '@material-ui/icons/Search';
+import Trendings from './components/Trendings';
 
 class App extends Component {
     
@@ -10,19 +11,22 @@ class App extends Component {
     
         this.state = {
              query: "",
+             trendings: [],
              searchedMovieData: []
         }
     }
-fetchAPI = async() => {
-    if(this.state.query !== ""){
-        const data = await fetchAPIData(this.state.query)
+
+    trendingFetch = async () => {
+        const data = await trendingAPI()
         this.setState({
-            searchedMovieData: data
+            trendings: data
         })
-        console.log(data)
+        console.log(this.state.trendings)
     }
 
-}
+    componentDidMount(){
+        this.trendingFetch()
+    }
 
     handleQuery = (e) =>{
         
@@ -37,7 +41,7 @@ fetchAPI = async() => {
     handleSubmit = async(e) =>{
         e.preventDefault()
         if(this.state.query.length > 0 ){
-            const data = await fetchAPIData(this.state.query)
+            const data = await searchAPI(this.state.query)
             this.setState({
                 searchedMovieData: data
             })
@@ -55,6 +59,7 @@ fetchAPI = async() => {
                         <button type="submit"><Search /></button>
                     </form>
                 </nav>
+                <Trendings trendings={this.state.trendings}/>
                 <SearchPage moviesData={this.state.searchedMovieData} handleQuery={this.handleQuery} query={this.state.query} handleSubmit={this.handleSubmit}/> 
             </div>
         )

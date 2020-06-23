@@ -1,9 +1,9 @@
 
 import axios from 'axios'
 
-const apiKEY = ""
+const apiKEY = "e487e6ff12b62e174b4cc5949992fd3e"
 
-const searchAPI = async(query) =>{
+export const searchAPI = async(query) =>{
 
     try {
         
@@ -19,4 +19,12 @@ const searchAPI = async(query) =>{
     
 }
 
-export default searchAPI
+export const trendingAPI = async () => {
+    try {
+        const uri = `https://api.themoviedb.org/3/trending/all/day?api_key=${apiKEY}`
+        const response = await axios.get(uri)
+        return response
+    } catch (error) {
+        throw error
+    }
+}
