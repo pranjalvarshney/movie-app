@@ -28,3 +28,13 @@ export const trendingAPI = async () => {
         throw error
     }
 }
+
+export const MoviesApi = async ()=>{
+    try {
+        const uri = ""
+        const response = await axios.get(uri)
+        return response
+    } catch (error) {
+        throw error
+    }
+}

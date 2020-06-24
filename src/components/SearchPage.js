@@ -34,7 +34,7 @@ function SearchPage(props) {
 
                                 </div>
                                 <h6 className="movie-title">{movie.title}</h6>
-                            </div>
+                             </div>
                         )
                     })}
                 </div>
