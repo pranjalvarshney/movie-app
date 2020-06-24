@@ -85,3 +85,79 @@ body{
 .movie-card .movie-title{
     margin-top: 10px;
 }
+
+.trending-wrapper{
+    justify-content: center;
+    align-items: center;
+}
+.trending-wrapper .bg-img{
+    background-position: center;
+    background-size: contain;
+    width: 100%;
+    opacity: 0.5;
+    filter: blur(3px);
+    height: 500px;
+}
+
+.trend-card{
+    width: 80%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+.trend-card .img-div{
+    position: relative;
+    height: 250px;
+    width: 190px;
+
+}
+.trend-card .img-div span{
+    position: absolute;
+    top: -10%;
+    left: -15%;
+    color:white;
+    text-align: center;
+    align-items: center;
+    font-weight: 600;
+    border-radius: 50%;
+    height: 60px;
+    width: 60px;
+    padding: 15px;
+    background-color: green;
+    border: 3px solid tomato;
+}
+.trend-card img{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    /* filter: brightness(0.9); */
+
+
+}
+.trend-card .fav-icon{
+    position: absolute;
+    right: 10%;
+    top: 5%;
+    cursor: pointer;
+}
+.trend-card .trend-content{
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    padding: 10px 20px;
+}
+.trend-content h6{
+    color: white;
+    background-color: orange;
+    padding: 4px;
+    width: 70px;
+    border-radius: 25px;
+    text-align: center;
+}
