@@ -7,12 +7,26 @@ body{
     background-color: rgba(5, 1, 14, 0.918);
     color: white;
 }
+.main-nav{
+    border-top: 5px solid darkturquoise;
+    font-size: 22px;
+}
 .all-cards{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+}
+.all-cards-row{
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    overflow: auto;
+    padding: 0 20px;
+}
+.all-cards-row::-webkit-scrollbar {
+    display: none;
 }
 .search-form{
     display: flex;
@@ -26,14 +40,12 @@ body{
     padding: 5px 16px;
 }
 .search-form button{
-    position: absolute;
     border-radius: 50%;
     padding: 10px 12px;
     outline: none;
     background-color: white;
     color: darkblue;
     border: 2px solid blue;
-    right: 3%;
 }
 .search-form button:hover{
     background-color: blue;
@@ -42,10 +54,9 @@ body{
 .movie-card{
     position: relative;
     flex: 3;
-    justify-content: center;
     display: flex;
     flex-direction: column;
-    margin: 20px 10px;
+    margin: 20px 20px;
 }
 .movie-card .img-div{
     position: relative;
@@ -65,8 +76,8 @@ body{
     height: 40px;
     width: 40px;
     padding: 5px;
-    background-color: green;
-    border: 2px solid tomato;
+    background-color: rgba(0, 41, 177, 0.815) ;
+    border: 2px solid darkturquoise;
 }
 .movie-card img{
     position: absolute;
@@ -88,21 +99,40 @@ body{
 }
 
 .trending-wrapper{
-    justify-content: center;
-    align-items: center;
+}
+.trending-wrapper .welcome{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    z-index: 5;
+    color: white;
+    top: 50%;
+    left: 50%;
+    text-align: center;
+    transform: translate(-50%,-50%);
+}
+.trending-wrapper .welcome h1{
+    font-weight: 700;
+    font-size: 70px;
+}
+.trending-wrapper .welcome input{
+    width: 100%;
+    font-size: 24px;
+    outline: none;
+    padding: 5px 25px;
+    border-radius: 25px;
+    border: 3px solid darkturquoise;
 }
 .trending-wrapper .bg-img{
-    background-position: center;
-    background-size: contain;
+    background-position: top center;
     width: 100%;
     opacity: 0.5;
-    filter: blur(3px);
+    filter: blur(1.5px);
     height: 60vh;
-    transform: scale(2);
 }
 
 .trend-card{
-    width: 80%;
+    width: 90%;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -114,8 +144,8 @@ body{
 }
 .trend-card .img-div{
     position: relative;
-    height: 250px;
-    width: 190px;
+    height: 300px;
+    width: 210px;
 
 }
 .trend-card .img-div span{
@@ -130,8 +160,8 @@ body{
     height: 60px;
     width: 60px;
     padding: 15px;
-    background-color: green;
-    border: 3px solid tomato;
+    background-color: rgba(0, 41, 177, 0.815);
+    border: 3px solid darkturquoise;
 }
 .trend-card img{
     position: absolute;

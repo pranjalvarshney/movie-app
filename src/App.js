@@ -1,24 +1,32 @@
 import React, { Component } from 'react'
 import SearchPage from './components/SearchPage'
-import {searchAPI, trendingAPI} from './api'
+import {searchAPI, trendingAPI , NowPlayingMoviesApi, topMoviesApi , upcomingMoviesApi ,tvOnAirApi,tvTopRatedApi,tvpopularApi} from './api'
 import Search from '@material-ui/icons/Search';
-import logo from './logo.svg'
+import logo from './long_logo.svg'
 import Movies from './components/Movies'
 import Tvseries from './components/Tvseries'
-import Popular from './components/Popular'
 import Home from './components/Home'
 import {Navbar, Nav ,Form ,FormControl, Button} from 'react-bootstrap'
 import {BrowserRouter as Router , Link, Route, Switch} from 'react-router-dom'
 
 class App extends Component {
     
+   
+
     constructor(props) {
         super(props)
     
         this.state = {
+             searchinputhide: true,
              query: "",
              trendings: [],
-             searchedMovieData: []
+             searchedMovieData: [],
+             npMovies: [],
+             topMovies: [],
+             upcomingMovies: [],
+             tvPopular: [],
+             tvOnAir: [],
+             tvTopRated: []
         }
     }
 
@@ -27,11 +35,57 @@ class App extends Component {
         this.setState({
             trendings: data
         })
-        console.log(this.state.trendings)
+        
+    } 
+    tvpopularFetch = async () => {
+        const data = await tvpopularApi()
+        this.setState({
+            tvPopular: data
+        })
+        
+    } 
+    tvTopRatedFetch = async () => {
+        const data = await tvTopRatedApi()
+        this.setState({
+            tvTopRated: data
+        })
+        
+    }
+    
+    tvOnAirFetch = async () => {
+        const data = await tvOnAirApi()
+        this.setState({
+            tvOnAir: data
+        })
+        
+    }
+    topMoviesFetch = async () => {
+        const data = await topMoviesApi()
+        this.setState({
+            topMovies: data
+        })
+    } 
+    npmoviesFetch = async () => {
+        const data = await NowPlayingMoviesApi()
+        this.setState({
+            npMovies: data
+        })
+    }
+    upcomingmoviesFetch = async () => {
+        const data = await upcomingMoviesApi()
+        this.setState({
+            upcomingMovies: data
+        })
     }
 
     componentDidMount(){
+        this.tvOnAirFetch()
+        this.tvTopRatedFetch()
+        this.tvpopularFetch()
+        this.upcomingmoviesFetch()
+        this.topMoviesFetch()
         this.trendingFetch()
+        this.npmoviesFetch()
     }
 
     handleQuery = (e) =>{
@@ -40,8 +94,6 @@ class App extends Component {
             query: e.target.value
         })
         
-        // this.fetchAPI()    
-        // console.log(this.state.query)
     }
 
     handleSubmit = async(e) =>{
@@ -51,47 +103,51 @@ class App extends Component {
             this.setState({
                 searchedMovieData: data
             })
-            // console.log(data)
         }
     }
-
+ 
     render() {
         return (
             <div>
                 <Router>
-                <Navbar bg="dark" expand="lg" variant="dark" className="px-5 ">
+                <Navbar bg="dark" expand="lg" variant="dark" className="px-5 main-nav">
                     <Link to="/">
-                        <Navbar.Brand href="#home"><img src={logo} alt="logo" height="80px" width="80px" /></Navbar.Brand>
+                        <Navbar.Brand href="#home"><img src={logo} alt="logo" height="90px" width="100%" /></Navbar.Brand>
                     </Link>
                     <Navbar.Toggle aria-controls="basic-navbar-nav"  />
                     <Navbar.Collapse id="basic-navbar-nav">
-                        <Nav className="m-auto">
+                        <Nav className="ml-auto">
                                 <Nav.Link href="/">Home</Nav.Link>
                                 <Nav.Link href="/movies">Movies</Nav.Link>
                                 <Nav.Link href="/tvseries" >Tv Series</Nav.Link>
-                                <Nav.Link href="/popular">Popular</Nav.Link>
+                             
+                        
+                            <Form className="search-form" onSubmit={this.handleSubmit} inline>
+                            <FormControl  onChange={this.handleQuery} value={this.state.query} type="search" placeholder="Search"  />
+                            <Button type="submit"><Search/></Button>
+                            </Form>
                         </Nav>
-                        <Form className="search-form" onSubmit={this.handleSubmit} inline>
-                        <FormControl  onChange={this.handleQuery} value={this.state.query} type="search" placeholder="Search"  />
-                        <Button type="submit"><Search/></Button>
-                        </Form>
                     </Navbar.Collapse>
                 </Navbar>
                 
                 <SearchPage moviesData={this.state.searchedMovieData} handleQuery={this.handleQuery} query={this.state.query} handleSubmit={this.handleSubmit}/> 
                 <Switch>
                     <Route exact path="/">
-                        <Home trendings = {this.state.trendings}/>
+                        <Home
+                            trendings = {this.state.trendings}
+                            moviesData={this.state.searchedMovieData}
+                            handleQuery={this.handleQuery}
+                            query={this.state.query}
+                            handleSubmit={this.handleSubmit}
+                        />
                     </Route>
                     <Route path="/movies">
-                        <Movies />
+                        <Movies npMovies={this.state.npMovies} topMovies={this.state.topMovies} upcomingMovies={this.state.upcomingMovies} />
                     </Route>
                     <Route path="/tvseries">
-                        <Tvseries />
+                        <Tvseries tvPopular={this.state.tvPopular} tvTopRated={this.state.tvTopRated} tvOnAir={this.state.tvOnAir}/>
                     </Route>
-                    <Route path="/popular">
-                        <Popular />
-                    </Route>
+                    
                 </Switch>
                 </Router>
             </div>

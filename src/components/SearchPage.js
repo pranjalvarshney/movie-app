@@ -21,8 +21,8 @@ function SearchPage(props) {
     }else{
         return (
 
-            <div className="container">
-                <h3 className="my-5">Search results</h3>
+            <div className="mx-5">
+                <h3 className="mt-5 mb-3">Search results</h3>
                 <div className="all-cards">
                     {props.moviesData.data.results.map((movie,i) => {
                         return(
@@ -33,7 +33,7 @@ function SearchPage(props) {
                                     <span>{movie.vote_average}</span>
 
                                 </div>
-                                <h6 className="movie-title">{movie.title}</h6>
+                                <h6 className="movie-title">{movie.title || movie.original_title || movie.original_name}</h6>
                              </div>
                         )
                     })}
