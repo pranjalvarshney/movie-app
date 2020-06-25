@@ -14,15 +14,15 @@ class App extends Component {
         }
     
         return (
-            <div>
+            <div className="main-wrapper">
                
                 <Trendings trendings={this.props.trendings}
                             
                             handleQuery={this.props.handleQuery}
                             query={this.props.query}
                             handleSubmit={this.props.handleSubmit}/>
-                <div className="mx-5">
-                    <h3 className="text-left my-3">Trendings</h3>
+                <div className="mx-5 trending-row-main">
+                    {/* <h3 className="text-left my-3">Trendings</h3> */}
                     <CardRow content={this.props.trendings}/>
                 </div>
             </div>

@@ -12,11 +12,9 @@ import {BrowserRouter as Router , Link, Route, Switch} from 'react-router-dom'
 class App extends Component {
     
    
-
-    constructor(props) {
-        super(props)
     
-        this.state = {
+        state = {
+            
              searchinputhide: true,
              query: "",
              trendings: [],
@@ -28,7 +26,6 @@ class App extends Component {
              tvOnAir: [],
              tvTopRated: []
         }
-    }
 
     trendingFetch = async () => {
         const data = await trendingAPI()
@@ -105,21 +102,31 @@ class App extends Component {
             })
         }
     }
+
+   
  
     render() {
+
+    
         return (
             <div>
                 <Router>
                 <Navbar bg="dark" expand="lg" variant="dark" className="px-5 main-nav">
                     <Link to="/">
-                        <Navbar.Brand href="#home"><img src={logo} alt="logo" height="90px" width="100%" /></Navbar.Brand>
+                        <Navbar.Brand ><img src={logo} alt="logo" height="90px" width="100%" /></Navbar.Brand>
                     </Link>
                     <Navbar.Toggle aria-controls="basic-navbar-nav"  />
                     <Navbar.Collapse id="basic-navbar-nav">
-                        <Nav className="ml-auto">
-                                <Nav.Link href="/">Home</Nav.Link>
+                        <Nav className="ml-auto" defaultActiveKey="/">
+                            <Nav.Item>
+                                <Nav.Link href="/" >Home</Nav.Link>
+                            </Nav.Item>
+                            <Nav.Item>
                                 <Nav.Link href="/movies">Movies</Nav.Link>
+                            </Nav.Item>    
+                            <Nav.Item>
                                 <Nav.Link href="/tvseries" >Tv Series</Nav.Link>
+                            </Nav.Item>    
                              
                         
                             <Form className="search-form" onSubmit={this.handleSubmit} inline>

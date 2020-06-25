@@ -4,12 +4,13 @@
     box-sizing: border-box;
 }
 body{
-    background-color: rgba(5, 1, 14, 0.918);
+    background-color: rgba(0, 0, 0, 0.95);
     color: white;
 }
 .main-nav{
-    border-top: 5px solid darkturquoise;
-    font-size: 22px;
+    border-bottom   : 5px solid darkturquoise;
+    font-size: 20px;
+    font-weight: 600;
 }
 .all-cards{
     display: flex;
@@ -35,20 +36,24 @@ body{
 }
 .search-form input{
     outline: none;
-    border: 2px solid blue;
+    border: 2px solid darkturquoise;
     border-radius: 25px;
     padding: 5px 16px;
+    transition: all 2s ease;
 }
 .search-form button{
+    position: absolute;
     border-radius: 50%;
     padding: 10px 12px;
     outline: none;
+    right: 2%;
     background-color: white;
-    color: darkblue;
-    border: 2px solid blue;
+    color: darkturquoise;
+    border: 2px solid darkturquoise;
 }
 .search-form button:hover{
-    background-color: blue;
+    border: 2px solid darkturquoise;
+    background-color: darkturquoise;
     color: white;
 }
 .movie-card{
@@ -61,7 +66,7 @@ body{
 .movie-card .img-div{
     position: relative;
     height: 230px;
-    width: 170px;
+    width: 180px;
 
 }
 .movie-card .img-div span{
@@ -97,7 +102,21 @@ body{
 .movie-card .movie-title{
     margin-top: 10px;
 }
+.main-wrapper{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+.main-wrapper .trending-row-main{
 
+    position: absolute;
+    z-index: 10;
+    margin: auto;
+    display: inline-block;
+    bottom: -50%;
+    left: 0;
+    width: 92%;
+}
 .trending-wrapper{
 }
 .trending-wrapper .welcome{
@@ -117,18 +136,19 @@ body{
 }
 .trending-wrapper .welcome input{
     width: 100%;
-    font-size: 24px;
+    font-size: 20px;
     outline: none;
-    padding: 5px 25px;
+    padding: 6px 25px;
     border-radius: 25px;
     border: 3px solid darkturquoise;
 }
 .trending-wrapper .bg-img{
-    background-position: top center;
+    background-position: center center;
     width: 100%;
-    opacity: 0.5;
-    filter: blur(1.5px);
-    height: 60vh;
+    filter: brightness(0.5);
+    /* opacity: 0.8; */
+    /* filter: blur(5px); */
+    height: 65vh;
 }
 
 .trend-card{

@@ -29,9 +29,9 @@ function Trendings(props) {
                                 <img className="bg-img" src={`https://image.tmdb.org/t/p/original/${trend.backdrop_path}`} alt={trend.title} />
                                 <div className="welcome">    
                                     <h1>Welcome</h1>
-                                    <h3>Millions of Movies and TV shows to discover. Explore now ...</h3>
+                                    <h3>Millions of Movies and TV shows to discover. Explore now</h3>
                                     <form onSubmit={submit}>     
-                                        <input onChange={handleChangeQuery} value={query} placeholder="Search movies , tv shows and series"/>
+                                        <input onChange={handleChangeQuery} value={query} placeholder="Search for a movie, series, tv show ....."/>
                                     </form>
                                 </div>  
                             </Carousel.Item>
